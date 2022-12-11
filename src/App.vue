@@ -21,7 +21,18 @@
       <div v-if="currentPerson.name">
         <div class="person-details">
           <div class="person-details-wrapper">
-            <div id="map-thumb" class="map-thumb"></div>
+            <div class="map-wrapper">
+              <GoogleMap
+                api-key="AIzaSyAOMbylCNZQtJPQhum9oprlF00ygTBtU7U"
+                class="map"
+                :center="coords(currentPerson.address.geo)"
+                :zoom="3"
+              >
+                <Marker
+                  :options="{ position: coords(currentPerson.address.geo) }"
+                />
+              </GoogleMap>
+            </div>
             <div>
               <div>{{ currentPerson.name }}</div>
               <p class="text-s gray">{{ currentPerson.username }}</p>
@@ -47,8 +58,13 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from "vue";
+import { GoogleMap, Marker } from "vue3-google-map";
+
+export default defineComponent({
   name: "App",
+  components: { GoogleMap, Marker },
+
   data() {
     return {
       people: [],
@@ -61,5 +77,11 @@ export default {
     const res = await fetch(url);
     this.people = await res.json();
   },
-};
+
+  methods: {
+    coords(coords) {
+      return { lat: Number(coords.lat), lng: Number(coords.lng) };
+    },
+  },
+});
 </script>
