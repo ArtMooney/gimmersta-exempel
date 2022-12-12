@@ -9,3 +9,5 @@ CSS-grund byggd med Webflow och tweakad i VS Code, Frontend Tooling framework ä
 2. Öppna projektet i t.ex. Visual Studio Code och öppna terminalen
 3. Installera dependencies genom att skriva npm install
 4. Starta development preview genom att skriva npm run dev
+
+Färdigbyggd exempel-app: https://gimmersta-example.netlify.app
